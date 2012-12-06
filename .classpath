@@ -2,6 +2,7 @@
   <classpathentry output=".target" path="app" kind="src"></classpathentry>
   <classpathentry output=".target" path="test" kind="src"></classpathentry>
   <classpathentry path="./lib/ecs-java.jar" kind="lib"></classpathentry>
+  <classpathentry path="./lib/jsch-0.1.49.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/jon/magentoAPI/target/scala-2.9.1/classes_managed" kind="lib"></classpathentry>
   <classpathentry path="/Users/Jon/Documents/play-2.0.2/framework/../repository/local/play/play_2.9.1/2.0.2/jars/play_2.9.1.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/Jon/Documents/play-2.0.2/framework/../repository/local/play/templates_2.9.1/2.0.2/jars/templates_2.9.1.jar" kind="lib"></classpathentry>

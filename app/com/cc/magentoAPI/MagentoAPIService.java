@@ -12,7 +12,7 @@ import play.db.*;
 public class MagentoAPIService {
 	
 	public static String queryProducts() {
-		String products = "select sku, name, msrp from catalog_product_flat_1 ";
+		String products = "select sku, name, msrp from catalog_product_flat_1 LIMIT 1";
 		return query(products);
 	}
 	
@@ -27,15 +27,19 @@ public class MagentoAPIService {
 	}
 	
 	public static String queryOrders() {
-		String orders = "Select increment_id, status, grand_total from sales_flat_order"; // Where updated_at > Now.addMinutes(-20) AND created_at > Now.addMinutes(-20)
+		String orders = "Select increment_id, status, grand_total from sales_flat_order LIMIT 1"; // Where updated_at > Now.addMinutes(-20) AND created_at > Now.addMinutes(-20)
 		return query(orders);
 	}
-	
+
 	public static String query(String query) {
+		DataSource ds = DB.getDataSource("magento");
+		Connection conn = DB.getConnection("magento");
+		return query(conn, query);
+	}
+	
+	public static String query(Connection conn, String query) {
 		String result = "";
 		try {
-			DataSource ds = DB.getDataSource("magento");
-			Connection conn = DB.getConnection("magento");
 			Statement s = conn.createStatement();
 			ResultSet rs = s.executeQuery(query);
 			while (rs.next()) {
@@ -57,7 +61,7 @@ public class MagentoAPIService {
 			}
 			rs.close();
 			s.close();
-			conn.commit();
+			//conn.commit();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
